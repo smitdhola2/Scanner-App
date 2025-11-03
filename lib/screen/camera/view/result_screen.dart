@@ -34,9 +34,9 @@ class ResultScreen extends GetView<ResultController> {
                       child: Column(
                         children: [
                           _buildImageCard(image),
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 25),
                           _buildResultCard(result, hasCode),
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 25),
                           _buildActionButtons(result),
                         ],
                       ),

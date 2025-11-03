@@ -22,7 +22,11 @@ class CameraControllerX extends GetxController {
 
   Future<void> initializeCamera() async {
     cameras = await availableCameras();
-    cameraController = CameraController(cameras!.first, ResolutionPreset.medium, enableAudio: false);
+    cameraController = CameraController(
+      cameras!.first,
+      ResolutionPreset.medium,
+      enableAudio: false,
+    );
     await cameraController!.initialize();
     isCameraInitialized.value = true;
   }
@@ -33,7 +37,10 @@ class CameraControllerX extends GetxController {
 
     while (isCapturing.value) {
       final Directory extDir = await getTemporaryDirectory();
-      final String filePath = path.join(extDir.path, '${DateTime.now().millisecondsSinceEpoch}.jpg');
+      final String filePath = path.join(
+        extDir.path,
+        '${DateTime.now().millisecondsSinceEpoch}.jpg',
+      );
 
       if (!cameraController!.value.isTakingPicture) {
         XFile file = await cameraController!.takePicture();
@@ -48,7 +55,10 @@ class CameraControllerX extends GetxController {
     isCapturing.value = false;
     if (capturedImages.isNotEmpty) {
       final result = await ImageScanner.scanImage(capturedImages.last);
-      Get.toNamed(ResultScreen.routeName, arguments: {'file': capturedImages.last, 'result': result});
+      Get.toNamed(
+        ResultScreen.routeName,
+        arguments: {'file': capturedImages.last, 'result': result},
+      );
     }
   }
 

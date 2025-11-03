@@ -7,7 +7,6 @@ class ImageScanner {
     final inputImage = InputImage.fromFile(imageFile);
     final barcodes = await scanner.processImage(inputImage);
     await scanner.close();
-
     if (barcodes.isNotEmpty) {
       return barcodes.first.rawValue ?? 'No data found';
     } else {
